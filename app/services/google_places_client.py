@@ -90,7 +90,7 @@ class GooglePlacesClient:
             
             # Ensure we await the raise_for_status coroutine
             if hasattr(response, 'raise_for_status'):
-                await response.raise_for_status()
+                response.raise_for_status()
             
             # Get the response data
             if hasattr(response, 'json') and callable(response.json):
@@ -139,23 +139,8 @@ class GooglePlacesClient:
         open_now: bool = False,
         page_token: Optional[str] = None,
     ) -> PlaceSearchResponse:
-        """Search for places using Google Places API.
-        
-        Args:
-            query: The text string on which to search, for example: "restaurant"
-            location: Dict with 'lat' and 'lng' keys for the center point of the search
-            radius: Defines the distance (in meters) within which to return place results
-            type: Restricts the results to places matching the specified type
-            language: The language code, indicating in which language the results should be returned
-            region: The region code, specified as a ccTLD two-character value
-            min_price: 0-4, representing increasing price levels
-            max_price: 0-4, representing increasing price levels
-            open_now: Return only those places that are open for business at the time
-            page_token: Token from a previous search that was more than 20 results
-            
-        Returns:
-            PlaceSearchResponse containing search results
-        """
+        """Search for places using Google Places API."""
+        logger.debug(f"[GooglePlacesClient] Calling Places API with query: {query}, location: {location}, radius: {radius}, type: {type}")
         endpoint = "/nearbysearch/json" if query is None else "/textsearch/json"
         params: Dict[str, Any] = {
             "language": language,

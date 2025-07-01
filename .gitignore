@@ -42,3 +42,6 @@ logs/
 
 # Jupyter Notebook
 .ipynb_checkpoints
+
+# Plan
+PLAN.md

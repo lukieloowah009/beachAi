@@ -119,6 +119,7 @@ class NoaaApiClient:
         Returns:
             List of tide predictions
         """
+        logger.debug(f"[NoaaApiClient] Requesting tide predictions for station: {station_id}, begin_date: {begin_date}, end_date: {end_date}, interval: {interval}")
         endpoint = f"stations/{station_id}/tide_predictions.json"
         
         # Format dates

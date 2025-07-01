@@ -149,7 +149,7 @@ class PlaceSearchResult(BaseModel):
     geometry: PlaceGeometry
     rating: Optional[float] = Field(None, ge=1, le=5)
     user_ratings_total: Optional[int] = Field(None, alias="user_ratings_total", ge=0)
-    price_level: Optional[PlacePriceLevel] = Field(None, alias="price_level")
+    price_level: Optional[Union[int, PlacePriceLevel]] = Field(None, alias="price_level")
     types: List[str] = Field(default_factory=list)
     business_status: Optional[str] = Field(None, alias="business_status")
     plus_code: Optional[Dict[str, Any]] = Field(None, alias="plus_code")
